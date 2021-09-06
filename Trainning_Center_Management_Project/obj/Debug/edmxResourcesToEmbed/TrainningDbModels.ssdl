@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Trainning_CenterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Batch">
+    <Key>
+      <PropertyRef Name="bID" />
+    </Key>
+    <Property Name="bID" Type="int" Nullable="false" />
+    <Property Name="bName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="bperiod" Type="varchar" MaxLength="10" />
+    <Property Name="bRound" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="teacherID" />
+    </Key>
+    <Property Name="teacherID" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="tsp" Type="char" MaxLength="4" />
+    <Property Name="gender" Type="varchar" MaxLength="6" />
+    <Property Name="contactNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="70" />
+    <Property Name="presentAddress" Type="varchar" MaxLength="100" />
+    <Property Name="homeTown" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Trainning_CenterDB.dbo.TraineeCourse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TraineeCourse">
+    <Key>
+      <PropertyRef Name="tID" />
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="teacherID" />
+    </Key>
+    <Property Name="tID" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="teacherID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trainees">
+    <Key>
+      <PropertyRef Name="tID" />
+    </Key>
+    <Property Name="tID" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="picture" Type="nvarchar" MaxLength="150" />
+    <Property Name="tsp" Type="char" MaxLength="4" />
+    <Property Name="admission" Type="datetime" Nullable="false" />
+    <Property Name="bID" Type="int" Nullable="false" />
+    <Property Name="birthDate" Type="datetime" />
+    <Property Name="gender" Type="varchar" MaxLength="6" />
+    <Property Name="contactNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="70" />
+    <Property Name="presentAddress" Type="varchar" MaxLength="100" />
+    <Property Name="homeTown" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK__TraineeCo__Cours__2D27B809">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="TraineeCourse" Type="Self.TraineeCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="TraineeCourse">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TraineeCo__teach__2E1BDC42">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="TraineeCourse" Type="Self.TraineeCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="teacherID" />
+      </Principal>
+      <Dependent Role="TraineeCourse">
+        <PropertyRef Name="teacherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TraineeCour__tID__2C3393D0">
+    <End Role="Trainees" Type="Self.Trainees" Multiplicity="1" />
+    <End Role="TraineeCourse" Type="Self.TraineeCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainees">
+        <PropertyRef Name="tID" />
+      </Principal>
+      <Dependent Role="TraineeCourse">
+        <PropertyRef Name="tID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Trainees__bID__286302EC">
+    <End Role="Batch" Type="Self.Batch" Multiplicity="1" />
+    <End Role="Trainees" Type="Self.Trainees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="bID" />
+      </Principal>
+      <Dependent Role="Trainees">
+        <PropertyRef Name="bID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Trainning_CenterDBModelStoreContainer">
+    <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trainees" EntityType="Self.Trainees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TraineeCourse" EntityType="Self.TraineeCourse" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TraineeCourse].[tID] AS [tID], 
+    [TraineeCourse].[CourseId] AS [CourseId], 
+    [TraineeCourse].[teacherID] AS [teacherID]
+    FROM [dbo].[TraineeCourse] AS [TraineeCourse]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__TraineeCo__Cours__2D27B809" Association="Self.FK__TraineeCo__Cours__2D27B809">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="TraineeCourse" EntitySet="TraineeCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TraineeCo__teach__2E1BDC42" Association="Self.FK__TraineeCo__teach__2E1BDC42">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="TraineeCourse" EntitySet="TraineeCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TraineeCour__tID__2C3393D0" Association="Self.FK__TraineeCour__tID__2C3393D0">
+      <End Role="Trainees" EntitySet="Trainees" />
+      <End Role="TraineeCourse" EntitySet="TraineeCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Trainees__bID__286302EC" Association="Self.FK__Trainees__bID__286302EC">
+      <End Role="Batch" EntitySet="Batch" />
+      <End Role="Trainees" EntitySet="Trainees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

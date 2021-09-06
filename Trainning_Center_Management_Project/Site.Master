@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Trainning_Center_Management_Project.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%:Page.Title %></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.6.0.js"></script>
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <style>
+        body {
+            padding-top: 90px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <nav class="navbar navbar-dark navbar-expand-md shadow-sm bg-dark border-bottom fixed-top text-capitalize" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="/">Trainning Center </a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="Default.aspx">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Task Link</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" runat="server" href="~/App_Pages/Courses.aspx">Course Types</a>
+                                <a class="dropdown-item" runat="server" href="~/App_Pages/Batch.aspx">Batch Types</a>
+                                <a class="dropdown-item" runat="server" href="~/App_Pages/Trainee.aspx">Trainees Summary</a>
+                                <a class="dropdown-item" runat="server" href="~/App_Pages/Trainee.aspx">Teacher Summary</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="#">About Us</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                        <%
+                            if (Request.IsAuthenticated)
+                            {
+                        %>
+                        <li class="navbar-text"><%=Page.User.Identity.Name %></li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="signout" runat="server" CssClass="nav-link" OnClick="signout_Click">Sign out</asp:LinkButton>
+                        </li>
+                        <%
+                            }
+                            else
+                            {
+                        %>
+                        <li class="nav-item"><a href="register.aspx" class="nav-link">Sign Up</a></li>
+                        <li class="nav-item"><a href="Login.aspx" class="nav-link">Sign In</a></li>
+                        <%
+                            }
+                        %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="container">
+            <p>Site Visited : <%=Application["th"] %> time, Currently browising <%=Application["au"] %></p>
+            <p class="text-center">&copy;www.piit.us - <%=DateTime.Now.Year %></p>
+        </div>
+    </form>
+    <asp:ContentPlaceHolder ID="foot" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="Scripts/bootstrap.js"></script>
+</body>
+</html>
+

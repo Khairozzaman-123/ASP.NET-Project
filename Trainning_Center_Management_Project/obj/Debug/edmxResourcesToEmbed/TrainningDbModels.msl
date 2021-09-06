@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Trainning_CenterDBModelStoreContainer" CdmEntityContainer="Trainning_CenterDBEntities">
+    <EntitySetMapping Name="Batches">
+      <EntityTypeMapping TypeName="Trainning_CenterDBModel.Batch">
+        <MappingFragment StoreEntitySet="Batch">
+          <ScalarProperty Name="bID" ColumnName="bID" />
+          <ScalarProperty Name="bName" ColumnName="bName" />
+          <ScalarProperty Name="bperiod" ColumnName="bperiod" />
+          <ScalarProperty Name="bRound" ColumnName="bRound" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="Trainning_CenterDBModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="Trainning_CenterDBModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="tsp" ColumnName="tsp" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="presentAddress" ColumnName="presentAddress" />
+          <ScalarProperty Name="homeTown" ColumnName="homeTown" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainees">
+      <EntityTypeMapping TypeName="Trainning_CenterDBModel.Trainee">
+        <MappingFragment StoreEntitySet="Trainees">
+          <ScalarProperty Name="tID" ColumnName="tID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="tsp" ColumnName="tsp" />
+          <ScalarProperty Name="admission" ColumnName="admission" />
+          <ScalarProperty Name="bID" ColumnName="bID" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="presentAddress" ColumnName="presentAddress" />
+          <ScalarProperty Name="homeTown" ColumnName="homeTown" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TraineeCourses">
+      <EntityTypeMapping TypeName="Trainning_CenterDBModel.TraineeCourse">
+        <MappingFragment StoreEntitySet="TraineeCourse">
+          <ScalarProperty Name="tID" ColumnName="tID" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
